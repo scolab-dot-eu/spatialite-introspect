@@ -5,7 +5,13 @@ Useful to get the table names, the column names of a specific table, the availab
 
 ## Installation
 
-FIXME
+```
+pip install pyspatialite
+```
+
+## Dependences
+
+spatialite-introspect uses [pyspatialite library](https://github.com/lokkju/pyspatialite)
 
 ## Usage
 
