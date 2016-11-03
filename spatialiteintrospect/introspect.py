@@ -63,7 +63,7 @@ class Introspect:
     def get_geometry_columns_info(self, table=None):
         """
         Returns a tuple formed of:
-         (table_name, geom_column, coord_dimension, srid, geometry_type, key_column, fields)
+         (table_name, geom_column, coord_dimension, srid, geometry_type, key_columns, fields)
         """
         if table:
             self.cursor.execute("""
