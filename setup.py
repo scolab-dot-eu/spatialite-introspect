@@ -216,25 +216,31 @@ class TestAllCommand(TestCommand):
 # define install_requires for specific Python versions
 python_version_specific_requires = []
 
+try:
+   import pypandoc
+   long_description = pypandoc.convert('README.md', 'rst')
+except (IOError, ImportError):
+   description = ''
+
 # See here for more options:
 # <http://pythonhosted.org/setuptools/setuptools.html>
 setup_dict = dict(
     name=metadata.package,
     version=metadata.version,
     author=metadata.authors[0],
-    #author_email=metadata.emails[0],
-    maintainer=metadata.authors[0],
+    author_email="",
+    #maintainer=metadata.authors[0],
     #maintainer_email=metadata.emails[0],
     url=metadata.url,
     description=metadata.description,
-    long_description=read('README.md'),
+    long_description=long_description,
     # Find a list of classifiers here:
     # <http://pypi.python.org/pypi?%3Aaction=list_classifiers>
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: AGPL License',
+        'License :: OSI Approved :: GNU Affero General Public License v3',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2',
