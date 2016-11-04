@@ -29,8 +29,9 @@ This library easily gets the table names, the column names of a
 specific table, the available geometry columns, etc.
 """
 
+
 import pyspatialite.dbapi2 as db
-import re
+
 
 class Introspect:
     QUOTE_CHAR = "'"
@@ -38,7 +39,7 @@ class Introspect:
     def __init__(self, file_path):
         self.conn = db.connect(file_path)
         self.cursor = self.conn.cursor()
-    
+
     def get_tables(self):
         self.cursor.execute("""
         SELECT name FROM sqlite_master
@@ -51,13 +52,13 @@ class Introspect:
         GROUP BY f_table_name;
         """)
         return [r[0] for r in self.cursor.fetchall()]
-    
+
     def get_geometry_columns(self, table):
-        self.cursor.execute("""
+        self.cursor.execute(u"""
         SELECT f_geometry_column
         FROM geometry_columns
         WHERE f_table_name = ?
-        """, [table])        
+        """, [table])
         return [r[0] for r in self.cursor.fetchall()]
 
     def get_geometry_columns_info(self, table=None):
@@ -66,51 +67,57 @@ class Introspect:
          (table_name, geom_column, coord_dimension, srid, geometry_type, key_columns, fields)
         """
         if table:
-            self.cursor.execute("""
+            self.cursor.execute(u"""
             SELECT f_table_name, f_geometry_column, coord_dimension, srid, geometry_type
             FROM geometry_columns
             WHERE f_table_name = ?
             """, [table])
         else:
-            self.cursor.execute("""
+            self.cursor.execute(u"""
             SELECT f_table_name, f_geometry_column, coord_dimension, srid, geometry_type
             FROM geometry_columns
             """)
-        
-        return [(r[0], r[1], r[2], r[3], r[4], self.get_pk_columns(r[0]), self.get_fields(r[0])) for r in self.cursor.fetchall()]
+
+        return [
+            (
+                r[0], r[1], r[2], r[3], r[4],
+                self.get_pk_columns(r[0]), self.get_fields(r[0])
+            )
+            for r in self.cursor.fetchall()
+        ]
 
     def get_pk_columns(self, table):
         """
         Gets the field names that form the primary key of a table. The returned
-        value is a list of strings. 
+        value is a list of strings.
         The order of each field on the list matches the order of the primary key
         on the table
         """
         if self.QUOTE_CHAR in table:
             raise InvalidIdentifierException
-        query = "pragma table_info('{0}')".format(table) 
+        query = u"pragma table_info('{0}')".format(table)
         result = self.conn.execute(query).fetchall()
         # Primary keys have a value > 0 in the primary key column
-        # The value also determines the order of the columns in the PK 
-        result.sort(lambda x,y: cmp(x[5], y[5]))
-        return [r[1] for r in result if r[5]>0]
-    
+        # The value also determines the order of the columns in the PK
+        result.sort(lambda x, y: cmp(x[5], y[5]))
+        return [r[1] for r in result if r[5] > 0]
+
     def get_fields(self, table):
         """
         Gets the field names of a table as a list of strings
         """
         if self.QUOTE_CHAR in table:
             raise InvalidIdentifierException
-        query = "pragma table_info('{0}')".format(table)
+        query = u"pragma table_info('{0}')".format(table)
         result = self.conn.execute(query).fetchall()
-        return [ r[1] for r in result ]
-    
+        return [r[1] for r in result]
+
     def close(self):
         """
         Closes the connection. The Introspect object can't be used afterwards
         """
         self.conn.close()
-        
+
 
 class InvalidIdentifierException(Exception):
     pass

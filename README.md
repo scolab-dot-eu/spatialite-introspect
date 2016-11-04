@@ -76,6 +76,8 @@ db.get_fields("tbl1")
 
 ```
 
+Note that the library expects Unicode strings on all the string params. Non unicode strings are also accepted if using ASCII-only characters. 
+
 
 ## Authors
 

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-"""Python library for easily retrieving table names, geometry columns, geometry tables, etc from a Spatialite database"""
+"""Python library for easily retrieving table names, geometry columns, geometry
+  tables, etc from a Spatialite database"""
 
 from spatialiteintrospect import metadata
 

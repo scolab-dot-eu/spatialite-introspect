@@ -129,8 +129,9 @@ def run(args):
     # executable. So we just pass the package name in as the executable name,
     # since it's close enough. This should never be seen by an end user
     # installing through Setuptools anyway.
-    from spatialite-introspect.main import main
-    raise SystemExit(main([CODE_DIRECTORY] + args))
+    #from spatialitintrospect.main import main
+    #raise SystemExit(main([CODE_DIRECTORY] + args))
+    pass
 
 
 @task

@@ -9,7 +9,8 @@ package = 'spatialiteintrospect'
 project = "spatialite-introspect"
 project_no_spaces = project.replace(' ', '')
 version = '0.1'
-description = 'Python library for easily retrieving table names, geometry columns, geometry tables, etc from a Spatialite database'
+description = """Python library for easily retrieving table names, geometry
+columns, geometry tables, etc from a Spatialite database"""
 authors = ['Cesar Martinez Izquierdo']
 authors_string = ', '.join(authors)
 emails = []

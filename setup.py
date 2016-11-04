@@ -42,7 +42,7 @@ PYTEST_FLAGS = ['--doctest-modules']
 
 # Import metadata. Normally this would just be:
 #
-#     from spatialite-introspect import metadata
+#     from spatialiteintrospect import metadata
 #
 # However, when we do this, we also import `spatialite-introspect/__init__.py'. If this
 # imports names from some other modules and these modules have third-party
@@ -169,7 +169,7 @@ def _lint():
     project_python_files = [filename for filename in get_project_files()
                             if filename.endswith(b'.py')]
     retcode = subprocess.call(
-        ['flake8', '--max-complexity=10'] + project_python_files)
+        ['flake8', '--max-complexity=10', '--max-line-length=100'] + project_python_files)
     if retcode == 0:
         print_success_message('No style errors')
     return retcode
@@ -231,7 +231,7 @@ setup_dict = dict(
     # Find a list of classifiers here:
     # <http://pypi.python.org/pypi?%3Aaction=list_classifiers>
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: AGPL License',
