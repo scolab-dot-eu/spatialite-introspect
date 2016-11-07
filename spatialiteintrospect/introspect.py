@@ -30,14 +30,14 @@ specific table, the available geometry columns, etc.
 """
 
 
-import pyspatialite.dbapi2 as db
+import sqlite3
 
 
 class Introspect:
     QUOTE_CHAR = "'"
 
     def __init__(self, file_path):
-        self.conn = db.connect(file_path)
+        self.conn = sqlite3.connect(file_path)
         self.cursor = self.conn.cursor()
 
     def get_tables(self):
