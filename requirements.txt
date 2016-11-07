@@ -1,1 +1,1 @@
-pyspatialite>=3.0.1a0
+# Nothing special

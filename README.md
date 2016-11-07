@@ -6,12 +6,12 @@ Useful to get the table names, the column names of a specific table, the availab
 ## Installation
 
 ```
-pip install pyspatialite
+pip install spatialiteintrospect
 ```
 
 ## Dependences
 
-spatialite-introspect uses [pyspatialite library](https://github.com/lokkju/pyspatialite)
+spatialite-introspect uses [sqlite3](https://docs.python.org/2/library/sqlite3.html), which should be included in any Python distribution since version 2.5.
 
 ## Usage
 

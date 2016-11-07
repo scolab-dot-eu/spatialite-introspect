@@ -217,10 +217,10 @@ class TestAllCommand(TestCommand):
 python_version_specific_requires = []
 
 try:
-   import pypandoc
-   long_description = pypandoc.convert('README.md', 'rst')
+    import pypandoc
+    long_description = pypandoc.convert('README.md', 'rst')
 except (IOError, ImportError):
-   description = ''
+    description = ''
 
 # See here for more options:
 # <http://pythonhosted.org/setuptools/setuptools.html>
@@ -244,7 +244,9 @@ setup_dict = dict(
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
         'Topic :: Database',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
