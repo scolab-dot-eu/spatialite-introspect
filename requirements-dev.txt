@@ -2,19 +2,23 @@
 --requirement requirements.txt
 
 # Testing
-pytest==2.5.1
-py==1.4.19
-mock==1.0.1
+pytest==3.0.3
+py==1.4.31
+mock==2.0.0
 
 # Linting
-flake8==2.1.0
-mccabe==0.2.1
-pep8==1.4.6
-pyflakes==0.7.3
+flake8==3.0.4
+mccabe==0.5.2
+pycodestyle==2.1.0
+pyflakes==1.2.3
+
+# for flake8
+enum34; python_version<"3.4"
+configparser; python_version<"3.2" 
 
 # Pypi publishing
 pypandoc
 
 # Miscellaneous
-Paver==1.2.1
-colorama==0.2.7
+Paver==1.2.4
+colorama==0.3.7
