@@ -99,7 +99,7 @@ class Introspect:
         result = self.conn.execute(query).fetchall()
         # Primary keys have a value > 0 in the primary key column
         # The value also determines the order of the columns in the PK
-        result.sort(lambda x, y: cmp(x[5], y[5]))
+        result.sort(key=lambda x: x[5])
         return [r[1] for r in result if r[5] > 0]
 
     def get_fields(self, table):
