@@ -31,14 +31,25 @@ specific table, the available geometry columns, etc.
 
 
 import sqlite3
-
+import os
 
 class Introspect:
     QUOTE_CHAR = "'"
 
-    def __init__(self, file_path):
+    def __init__(self, file_path, create=False):
+        if not create and not self.is_sqlite3(file_path):
+            raise InvalidSqlite3Database()
         self.conn = sqlite3.connect(file_path)
         self.cursor = self.conn.cursor()
+
+    def is_sqlite3(self, file_path):
+        if not os.path.isfile(file_path):
+            return False
+        if os.path.getsize(file_path) < 100: # SQLite database file header is 100 bytes
+            return False
+        with open(file_path, 'rb') as fd:
+            header = fd.read(100)
+            return header[:16] == b'SQLite format 3\x00'
 
     def get_tables(self):
         self.cursor.execute("""
@@ -120,4 +131,7 @@ class Introspect:
 
 
 class InvalidIdentifierException(Exception):
+    pass
+
+class InvalidSqlite3Database(Exception):
     pass
