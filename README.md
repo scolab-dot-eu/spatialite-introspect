@@ -19,9 +19,10 @@ Basic usage:
 
 
 ```
-from spatialiteintrospect import introspect as i
+import spatialiteintrospect as spintrospect
+
 # open db connection
-db = i.Introspect("mydb.sqlite")
+db = spintrospect.connect("mydb.sqlite")
 
 # get all the tables in the db
 db.get_tables()

@@ -33,6 +33,9 @@ specific table, the available geometry columns, etc.
 import sqlite3
 import os
 
+def connect(file_path, create=False):
+    return Introspect(file_path, create)
+
 class Introspect:
     QUOTE_CHAR = "'"
 
