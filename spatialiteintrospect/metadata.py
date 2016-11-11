@@ -8,7 +8,7 @@ Information describing the project.
 package = 'spatialiteintrospect'
 project = "spatialite-introspect"
 project_no_spaces = project.replace(' ', '')
-version = '1.1'
+version = '1.2'
 description = """Python library for easily retrieving table names, \
 geometry columns, geometry tables, etc from a Spatialite database"""
 authors = ['Cesar Martinez Izquierdo']
